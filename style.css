@@ -111,3 +111,14 @@ textarea {
 .dropdown-content.show {
     display: block;
 }
+/* Footer Styling */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px 0;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    font-size: 14px;
+    color: #333;
+}
+
