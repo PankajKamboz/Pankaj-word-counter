@@ -7,8 +7,8 @@ function toggleCaseDropdown() {
 // Change the case of the text in the textarea
 function changeCase(caseType) {
     var inputText = document.getElementById("inputText");
-
     var text = inputText.value;
+
     switch (caseType) {
         case 'sentence':
             inputText.value = toSentenceCase(text);
@@ -23,9 +23,9 @@ function changeCase(caseType) {
             inputText.value = text.toLowerCase();
             break;
     }
-
     // Close dropdown after selection
     document.getElementById("caseDropdown").classList.remove("show");
+    updateWordCountAndFreq();  // Update word/character frequency on case change
 }
 
 // Convert text to Sentence case
@@ -42,17 +42,54 @@ function toTitleCase(str) {
     });
 }
 
-// Example of counting words and characters (this can be added as needed)
-document.getElementById("inputText").addEventListener("input", function() {
-    var text = this.value;
+// Function to update word and character count, as well as frequency lists
+function updateWordCountAndFreq() {
+    var text = document.getElementById("inputText").value;
 
     // Count words and characters
     var wordCount = text.trim().split(/\s+/).length;
     if (text.trim() === "") wordCount = 0;  // If text is empty
-
     var charCount = text.length;
 
-    // Update counts on screen
+    // Update counts
     document.getElementById("wordCount").textContent = wordCount;
     document.getElementById("charCount").textContent = charCount;
-});
+
+    // Update word frequency list
+    updateWordFrequency(text);
+    updateCharacterFrequency(text);
+}
+
+// Update word frequency
+function updateWordFrequency(text) {
+    var words = text.trim().split(/\s+/);
+    var wordFrequency = {};
+    words.forEach(word => {
+        word = word.toLowerCase();
+        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
+    });
+
+    var wordList = '';
+    for (var word in wordFrequency) {
+        wordList += `<li>${word}: ${wordFrequency[word]}</li>`;
+    }
+    document.getElementById("wordFrequencyList").innerHTML = wordList;
+}
+
+// Update character frequency
+function updateCharacterFrequency(text) {
+    var charFrequency = {};
+    for (var i = 0; i < text.length; i++) {
+        var char = text[i];
+        charFrequency[char] = (charFrequency[char] || 0) + 1;
+    }
+
+    var charList = '';
+    for (var char in charFrequency) {
+        charList += `<li>${char}: ${charFrequency[char]}</li>`;
+    }
+    document.getElementById("charFrequencyList").innerHTML = charList;
+}
+
+// Event listener for textarea input
+document.getElementById("inputText").addEventListener("input", updateWordCountAndFreq);
