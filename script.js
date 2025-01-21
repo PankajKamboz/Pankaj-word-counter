@@ -1,94 +1,51 @@
-// Toggle visibility of the dropdown menu
+// Toggle Case Dropdown
 function toggleCaseDropdown() {
-    var dropdown = document.getElementById("caseDropdown");
-    dropdown.classList.toggle("show");
+    document.getElementById('caseDropdown').classList.toggle('show');
 }
 
-// Change the case of the text in the textarea
+// Change Case Functionality
 function changeCase(caseType) {
-    var inputText = document.getElementById("inputText");
-    var text = inputText.value;
-
+    const inputText = document.getElementById('inputText').value;
+    let result;
     switch (caseType) {
         case 'sentence':
-            inputText.value = toSentenceCase(text);
+            result = inputText.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
             break;
         case 'title':
-            inputText.value = toTitleCase(text);
+            result = inputText.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
             break;
         case 'uppercase':
-            inputText.value = text.toUpperCase();
+            result = inputText.toUpperCase();
             break;
         case 'lowercase':
-            inputText.value = text.toLowerCase();
+            result = inputText.toLowerCase();
             break;
     }
-    // Close dropdown after selection
-    document.getElementById("caseDropdown").classList.remove("show");
-    updateWordCountAndFreq(); // Update frequency counts after case change
+    document.getElementById('inputText').value = result;
 }
 
-// Convert text to Sentence case
-function toSentenceCase(str) {
-    return str.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(match) {
-        return match.toUpperCase();
-    });
+// Toggle Translation Dropdown
+function toggleTranslateDropdown() {
+    document.getElementById('translateDropdown').classList.toggle('show');
 }
 
-// Convert text to Title case
-function toTitleCase(str) {
-    return str.replace(/\b([a-z]+)/g, function(match) {
-        return match.charAt(0).toUpperCase() + match.slice(1);
-    });
-}
+// Translate Content Functionality
+async function translateContent(targetLanguage) {
+    const inputText = document.getElementById('inputText').value;
 
-// Function to update word and character count and frequency lists
-function updateWordCountAndFreq() {
-    var text = document.getElementById("inputText").value;
+    try {
+        const response = await fetch(
+            `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLanguage}&dt=t&q=${encodeURIComponent(inputText)}`
+        );
 
-    // Count words and characters
-    var wordCount = text.trim().split(/\s+/).length;
-    if (text.trim() === "") wordCount = 0; // Handle empty text
-    var charCount = text.length;
+        if (!response.ok) {
+            throw new Error('Translation API error');
+        }
 
-    // Update counts
-    document.getElementById("wordCount").textContent = wordCount;
-    document.getElementById("charCount").textContent = charCount;
-
-    // Update word and character frequency lists
-    updateWordFrequency(text);
-    updateCharacterFrequency(text);
-}
-
-// Update word frequency
-function updateWordFrequency(text) {
-    var words = text.trim().split(/\s+/);
-    var wordFrequency = {};
-    words.forEach(word => {
-        word = word.toLowerCase();
-        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-    });
-
-    var wordList = '';
-    for (var word in wordFrequency) {
-        wordList += `<li>${word}: ${wordFrequency[word]}</li>`;
+        const result = await response.json();
+        const translatedText = result[0]?.map(part => part[0]).join('');
+        document.getElementById('inputText').value = translatedText;
+    } catch (error) {
+        alert('Translation failed. Please try again later.');
     }
-    document.getElementById("wordFrequencyList").innerHTML = wordList;
 }
-
-// Update character frequency
-function updateCharacterFrequency(text) {
-    var charFrequency = {};
-    for (var char of text) {
-        charFrequency[char] = (charFrequency[char] || 0) + 1;
-    }
-
-    var charList = '';
-    for (var char in charFrequency) {
-        charList += `<li>${char}: ${charFrequency[char]}</li>`;
-    }
-    document.getElementById("charFrequencyList").innerHTML = charList;
-}
-
-// Event listener for textarea input
-document.getElementById("inputText").addEventListener("input", updateWordCountAndFreq);
