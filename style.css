@@ -46,7 +46,8 @@ body {
     max-height: 50vh;
 }
 
-.word-count-box, .character-count-box {
+.word-count-box,
+.character-count-box {
     padding: 15px;
     margin-bottom: 20px;
     background-color: #ffffff;
