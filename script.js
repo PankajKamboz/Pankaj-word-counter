@@ -25,7 +25,7 @@ function changeCase(caseType) {
     }
     // Close dropdown after selection
     document.getElementById("caseDropdown").classList.remove("show");
-    updateWordCountAndFreq();  // Update word/character frequency on case change
+    updateWordCountAndFreq(); // Update frequency counts after case change
 }
 
 // Convert text to Sentence case
@@ -42,20 +42,20 @@ function toTitleCase(str) {
     });
 }
 
-// Function to update word and character count, as well as frequency lists
+// Function to update word and character count and frequency lists
 function updateWordCountAndFreq() {
     var text = document.getElementById("inputText").value;
 
     // Count words and characters
     var wordCount = text.trim().split(/\s+/).length;
-    if (text.trim() === "") wordCount = 0;  // If text is empty
+    if (text.trim() === "") wordCount = 0; // Handle empty text
     var charCount = text.length;
 
     // Update counts
     document.getElementById("wordCount").textContent = wordCount;
     document.getElementById("charCount").textContent = charCount;
 
-    // Update word frequency list
+    // Update word and character frequency lists
     updateWordFrequency(text);
     updateCharacterFrequency(text);
 }
@@ -79,8 +79,7 @@ function updateWordFrequency(text) {
 // Update character frequency
 function updateCharacterFrequency(text) {
     var charFrequency = {};
-    for (var i = 0; i < text.length; i++) {
-        var char = text[i];
+    for (var char of text) {
         charFrequency[char] = (charFrequency[char] || 0) + 1;
     }
 
