@@ -1,84 +1,58 @@
+// Toggle visibility of the dropdown menu
+function toggleCaseDropdown() {
+    var dropdown = document.getElementById("caseDropdown");
+    dropdown.classList.toggle("show");
+}
+
+// Change the case of the text in the textarea
+function changeCase(caseType) {
+    var inputText = document.getElementById("inputText");
+
+    var text = inputText.value;
+    switch (caseType) {
+        case 'sentence':
+            inputText.value = toSentenceCase(text);
+            break;
+        case 'title':
+            inputText.value = toTitleCase(text);
+            break;
+        case 'uppercase':
+            inputText.value = text.toUpperCase();
+            break;
+        case 'lowercase':
+            inputText.value = text.toLowerCase();
+            break;
+    }
+
+    // Close dropdown after selection
+    document.getElementById("caseDropdown").classList.remove("show");
+}
+
+// Convert text to Sentence case
+function toSentenceCase(str) {
+    return str.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(match) {
+        return match.toUpperCase();
+    });
+}
+
+// Convert text to Title case
+function toTitleCase(str) {
+    return str.replace(/\b([a-z]+)/g, function(match) {
+        return match.charAt(0).toUpperCase() + match.slice(1);
+    });
+}
+
+// Example of counting words and characters (this can be added as needed)
 document.getElementById("inputText").addEventListener("input", function() {
-    let inputText = document.getElementById("inputText").value.trim();
+    var text = this.value;
 
-    // Immediately process the text as you type
-    let charCount = inputText.length;
-    let charFrequency = countCharacterFrequency(inputText);
-    let wordFrequency = countWordFrequency(inputText);
-    let wordCount = Object.values(wordFrequency).reduce((acc, item) => acc + item.count, 0); // Corrected word count calculation
+    // Count words and characters
+    var wordCount = text.trim().split(/\s+/).length;
+    if (text.trim() === "") wordCount = 0;  // If text is empty
 
-    displayResults(charCount, charFrequency, wordCount, wordFrequency);
+    var charCount = text.length;
+
+    // Update counts on screen
+    document.getElementById("wordCount").textContent = wordCount;
+    document.getElementById("charCount").textContent = charCount;
 });
-
-// Function to count character frequencies
-function countCharacterFrequency(text) {
-    let frequency = {};
-    let totalCharacters = text.length;
-
-    // Count the frequency of each character
-    for (let char of text) {
-        char = char.toLowerCase();
-        if (char !== " ") { 
-            frequency[char] = (frequency[char] || 0) + 1;
-        }
-    }
-
-    // Add percentage to each character's frequency
-    for (let char in frequency) {
-        frequency[char] = {
-            count: frequency[char],
-            percentage: ((frequency[char] / totalCharacters) * 100).toFixed(2) + '%'
-        };
-    }
-
-    return frequency;
-}
-
-// Function to count word frequencies
-function countWordFrequency(text) {
-    let frequency = {};
-    let words = text.split(/\s+/);  // Split the text into words by spaces
-    let totalWords = words.filter(Boolean).length; // Count only non-empty words
-
-    // Count the frequency of each word
-    for (let word of words) {
-        word = word.toLowerCase().replace(/[^a-z0-9]/gi, '');
-        if (word !== "") {
-            frequency[word] = (frequency[word] || 0) + 1;
-        }
-    }
-
-    // Add percentage to each word's frequency
-    for (let word in frequency) {
-        frequency[word] = {
-            count: frequency[word],
-            percentage: ((frequency[word] / totalWords) * 100).toFixed(2) + '%'
-        };
-    }
-
-    return frequency;
-}
-
-// Function to display results dynamically
-function displayResults(charCount, charFrequency, wordCount, wordFrequency) {
-    let charFrequencyList = document.getElementById("charFrequencyList");
-    let wordFrequencyList = document.getElementById("wordFrequencyList");
-
-    // Update total character and word count
-    document.getElementById("wordCount").innerText = wordCount;
-    document.getElementById("charCount").innerText = charCount;
-
-    // Clear previous frequency lists
-    charFrequencyList.innerHTML = '';
-    wordFrequencyList.innerHTML = '';
-
-    // Display character frequencies with percentage
-    for (const char in charFrequency) {
-        charFrequencyList.innerHTML += `<li><strong>${char}</strong>: ${charFrequency[char].count} (${charFrequency[char].percentage})</li>`;
-    }
-
-    // Display word frequencies with percentage
-    for (const word in wordFrequency) {
-        wordFrequencyList.innerHTML += `<li><strong>${word}</strong>: ${wordFrequency[word].count} (${wordFrequency[word].percentage})</li>`;
-    }
-}
