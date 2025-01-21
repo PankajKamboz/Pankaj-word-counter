@@ -1,124 +1,65 @@
-/* General Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
-
-.container {
-    display: flex;
-    max-width: 1200px;
-    margin: 20px auto;
-    gap: 20px;
-}
-
-/* Content Section */
-.content-section {
-    flex: 3;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-textarea {
-    width: 100%;
-    height: 150px;
-    font-size: 16px;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
-.counts {
-    margin-top: 10px;
-    font-size: 16px;
-}
-
-/* Sidebar Section */
-.sidebar-section {
-    flex: 2;
+/* Translation and Case Buttons */
+.case-selector, .translation-selector {
+    display: inline-block;
+    margin-right: 15px;
     position: relative;
 }
 
-.sticky-sidebar {
-    position: sticky;
-    top: 20px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Scrollable List Styling */
-.scrollable-list {
-    max-height: 300px;
-    overflow-y: auto;
-    list-style: none;
-    padding: 0;
-    margin: 10px 0;
-    border: 1px solid #ddd;
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
     border-radius: 5px;
 }
 
-.scrollable-list li {
-    padding: 5px 10px;
-    border-bottom: 1px solid #eee;
-}
-
-.scrollable-list li:last-child {
-    border-bottom: none;
-}
-
-/* Dropdown Menu */
-.case-selector {
-    position: relative;
-    margin-bottom: 10px;
-}
-
-#caseButton {
-    font-size: 16px;
-    cursor: pointer;
+button:hover {
+    background-color: #0056b3;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    background-color: #f9f9f9;
+    min-width: 120px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     z-index: 1;
+    right: 0;
 }
 
 .dropdown-content button {
-    background-color: white;
     color: black;
     padding: 10px;
+    text-align: left;
     width: 100%;
     border: none;
-    cursor: pointer;
+    display: block;
 }
 
 .dropdown-content button:hover {
-    background-color: #ddd;
+    background-color: #f1f1f1;
 }
 
-.dropdown-content.show {
+.show {
     display: block;
 }
-/* Footer Styling */
-.footer {
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px 0;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    font-size: 14px;
-    color: #333;
+
+/* Word and Character Analysis Sidebar */
+.sidebar-section {
+    width: 25%;
+    padding: 15px;
 }
 
+.sticky-sidebar {
+    position: sticky;
+    top: 10px;
+}
+
+.scrollable-list {
+    max-height: 200px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-top: 10px;
+}
