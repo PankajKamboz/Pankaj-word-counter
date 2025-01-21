@@ -4,15 +4,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Character & Word Frequency Counter with Percentage</title>
+    <title>Character & Word Frequency Counter</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <div class="container">
-        <!-- Left Section for Text Area -->
         <div class="text-area-container">
-            <h1 class="heading">Character & Word Frequency Counter with Percentage</h1>
+            <h1>Character & Word Frequency Counter</h1>
+            
+            <!-- Case Dropdown Button -->
+            <div class="case-selector">
+                <button id="caseButton" onclick="toggleCaseDropdown()">Case</button>
+                <div id="caseDropdown" class="dropdown-content">
+                    <button onclick="changeCase('sentence')">Sentence case</button>
+                    <button onclick="changeCase('title')">Title Case</button>
+                    <button onclick="changeCase('uppercase')">UPPERCASE</button>
+                    <button onclick="changeCase('lowercase')">lowercase</button>
+                </div>
+            </div>
+
             <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
             <div class="counts">
                 <h3>Total Words: <span id="wordCount">0</span></h3>
@@ -20,7 +31,6 @@
             </div>
         </div>
 
-        <!-- Right Section for Results -->
         <div class="result-container">
             <div class="word-count-box">
                 <h3>Word Frequency:</h3>
