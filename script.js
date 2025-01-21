@@ -64,8 +64,9 @@ function displayResults(charCount, charFrequency, wordCount, wordFrequency) {
     let charFrequencyList = document.getElementById("charFrequencyList");
     let wordFrequencyList = document.getElementById("wordFrequencyList");
 
-    // Update total character count
-    document.querySelector(".character-count-box h3:nth-of-type(1)").innerHTML = `Total Characters: ${charCount}`;
+    // Update total character and word count
+    document.getElementById("wordCount").innerText = wordCount;
+    document.getElementById("charCount").innerText = charCount;
 
     // Clear previous frequency lists
     charFrequencyList.innerHTML = '';
@@ -80,7 +81,4 @@ function displayResults(charCount, charFrequency, wordCount, wordFrequency) {
     for (const word in wordFrequency) {
         wordFrequencyList.innerHTML += `<li><strong>${word}</strong>: ${wordFrequency[word].count} (${wordFrequency[word].percentage})</li>`;
     }
-
-    // Update total word count
-    document.querySelector(".word-count-box h3:nth-of-type(1)").innerHTML = `Total Words: ${wordCount}`;
 }
