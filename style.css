@@ -1,147 +1,67 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f4f6fb;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    padding: 15px;
-    overflow-y: auto;
-}
+/* Previous styles */
 
 .container {
     display: flex;
-    flex-direction: row;
-    max-width: 1000px;
-    width: 100%;
-    background-color: #ffffff;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    gap: 20px;
-    height: 100%;
 }
 
 .text-area-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+    width: 80%;
+    max-width: 700px;
 }
 
-.result-container {
-    width: 300px;
-    background-color: #f9fafb;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 20px;
-    max-height: 50vh;
+#caseButton {
+    margin-bottom: 10px;
+    font-size: 14px;
+    cursor: pointer;
 }
 
-.word-count-box,
-.character-count-box {
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
-    max-height: 200px;
+.case-selector {
+    position: relative;
+    display: inline-block;
 }
 
-.heading {
-    font-size: 1.6em;
-    color: #333;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 20px;
+/* Dropdown content - Hidden by default */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+/* Dropdown buttons inside the dropdown */
+.dropdown-content button {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    cursor: pointer;
+}
+
+/* Hover effect for buttons */
+.dropdown-content button:hover {
+    background-color: #ddd;
+}
+
+/* Make dropdown content visible */
+.dropdown-content.show {
+    display: block;
 }
 
 textarea {
     width: 100%;
-    height: 300px;
-    padding: 15px;
-    font-size: 1.2em;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    resize: none;
-    outline: none;
-    transition: border-color 0.3s ease;
+    height: 150px;
+    font-size: 16px;
+    padding: 10px;
 }
 
-textarea:focus {
-    border-color: #5b9bf9;
-}
-
-.output h3 {
-    color: #555;
-    font-size: 1.2em;
-    margin-bottom: 10px;
-}
-
-.output ul {
-    list-style: none;
+.counts {
     margin-top: 10px;
-    padding: 0;
-}
-
-.output li {
-    padding: 8px;
-    background-color: #eaeaea;
-    margin: 6px 0;
-    border-radius: 8px;
-    font-size: 1.1em;
-    color: #333;
-}
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-        padding: 10px;
-    }
-
-    .text-area-container,
-    .result-container {
-        width: 100%;
-        padding: 15px;
-    }
-
-    .heading {
-        font-size: 1.4em;
-    }
-
-    textarea {
-        height: 250px;
-    }
-
-    .output li {
-        font-size: 1em;
-    }
-}
-
-@media (max-width: 480px) {
-    .heading {
-        font-size: 1.2em;
-    }
-
-    textarea {
-        font-size: 1.1em;
-    }
-
-    .output h3 {
-        font-size: 1.1em;
-    }
-
-    .output li {
-        font-size: 1em;
-    }
+    font-size: 16px;
 }
