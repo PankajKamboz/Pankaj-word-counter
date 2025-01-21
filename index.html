@@ -23,6 +23,19 @@
                 </div>
             </div>
 
+            <!-- Translation Dropdown Button -->
+            <div class="translation-selector">
+                <button id="translateButton" onclick="toggleTranslateDropdown()">Translate</button>
+                <div id="translateDropdown" class="dropdown-content">
+                    <button onclick="translateContent('en')">English</button>
+                    <button onclick="translateContent('es')">Spanish</button>
+                    <button onclick="translateContent('fr')">French</button>
+                    <button onclick="translateContent('de')">German</button>
+                    <button onclick="translateContent('hi')">Hindi</button>
+                    <!-- Add more languages as desired -->
+                </div>
+            </div>
+
             <!-- Input Textarea -->
             <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
 
@@ -47,7 +60,8 @@
             </div>
         </div>
     </div>
-     <!-- Footer Section -->
+
+    <!-- Footer Section -->
     <footer class="footer">
         <p>This Tool is made by <b>Pankaj Kamboj</b>.</p>
     </footer>
