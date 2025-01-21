@@ -8,7 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="text-area-container">
+        <!-- Main Content Section -->
+        <div class="content-section">
             <h1>Character & Word Frequency Counter</h1>
 
             <!-- Case Dropdown Button -->
@@ -22,22 +23,27 @@
                 </div>
             </div>
 
+            <!-- Input Textarea -->
             <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
 
+            <!-- Word and Character Counts -->
             <div class="counts">
                 <h3>Total Words: <span id="wordCount">0</span></h3>
                 <h3>Total Characters: <span id="charCount">0</span></h3>
             </div>
         </div>
 
-        <div class="result-container">
-            <div class="word-count-box">
-                <h3>Word Frequency:</h3>
-                <ul id="wordFrequencyList"></ul>
-            </div>
-            <div class="character-count-box">
-                <h3>Character Frequency:</h3>
-                <ul id="charFrequencyList"></ul>
+        <!-- Sidebar Section -->
+        <div class="sidebar-section">
+            <div class="sticky-sidebar">
+                <div class="word-count-box">
+                    <h3>Word Frequency:</h3>
+                    <ul id="wordFrequencyList" class="scrollable-list"></ul>
+                </div>
+                <div class="character-count-box">
+                    <h3>Character Frequency:</h3>
+                    <ul id="charFrequencyList" class="scrollable-list"></ul>
+                </div>
             </div>
         </div>
     </div>
