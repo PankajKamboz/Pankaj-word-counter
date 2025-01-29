@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,10 +8,12 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/3cLpipH.png" type="image/png">
-    
-    <!-- Logo Image (Displayed in header) -->
+
+    <!-- Linking to External Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
     <div class="container">
         <div class="content-section">
@@ -19,9 +22,47 @@
                 <img src="https://i.imgur.com/3cLpipH.png" alt="Logo" style="width: 150px; height: auto;">
                 Character & Word Frequency Counter
             </h1>
-            
+
             <!-- Rest of your content here -->
+            <div class="case-selector">
+                <button id="caseButton" onclick="toggleCaseDropdown()">Case</button>
+                <div id="caseDropdown" class="dropdown-content">
+                    <button onclick="changeCase('sentence')">Sentence case</button>
+                    <button onclick="changeCase('title')">Title Case</button>
+                    <button onclick="changeCase('uppercase')">UPPERCASE</button>
+                    <button onclick="changeCase('lowercase')">lowercase</button>
+                </div>
+            </div>
+
+            <!-- Input Textarea -->
+            <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
+
+            <!-- Word and Character Counts -->
+            <div class="counts">
+                <h3>Total Words: <span id="wordCount">0</span></h3>
+                <h3>Total Characters: <span id="charCount">0</span></h3>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <div class="sticky-sidebar">
+                <div class="word-count-box">
+                    <h3>Word Frequency:</h3>
+                    <ul id="wordFrequencyList" class="scrollable-list"></ul>
+                </div>
+                <div class="character-count-box">
+                    <h3>Character Frequency:</h3>
+                    <ul id="charFrequencyList" class="scrollable-list"></ul>
+                </div>
+            </div>
         </div>
     </div>
+
+    <footer class="footer">
+        <p>This Tool is made by <b>Pankaj Kamboj</b>.</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
