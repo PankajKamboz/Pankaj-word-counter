@@ -15,26 +15,31 @@
 
     <div class="container">
 
-        <!-- Word & Character Frequency Section -->
-        <div class="stats-container">
-            <h3>Word Frequency:</h3>
-            <p id="wordCount">0</p>
-            <h3>Character Frequency:</h3>
-            <p id="charCount">0</p>
-        </div>
-
         <!-- Main Content Section -->
         <div class="content-section">
             <div class="logo-container">
                 <img src="https://i.imgur.com/3cLpipH.png" alt="Logo">
                 <h1>Character & Word Frequency Counter</h1>
+                <p class="branding">by Pankaj Kamboj</p>
             </div>
 
             <!-- Text Input Box -->
             <textarea id="textInput" placeholder="Type or paste your content here..." oninput="updateCounts()"></textarea>
 
-            <!-- Clear Button -->
-            <button onclick="clearText()">Clear</button>
+            <!-- CASE Buttons -->
+            <div class="case-buttons">
+                <button onclick="convertToUpperCase()">UPPERCASE</button>
+                <button onclick="convertToLowerCase()">lowercase</button>
+                <button onclick="clearText()">Clear</button>
+            </div>
+        </div>
+
+        <!-- Word & Character Frequency Section (Moved to Right Side) -->
+        <div class="stats-container">
+            <h3>Word Count:</h3>
+            <p id="wordCount">0 Words</p>
+            <h3>Character Count:</h3>
+            <p id="charCount">0 Characters</p>
         </div>
 
     </div>
