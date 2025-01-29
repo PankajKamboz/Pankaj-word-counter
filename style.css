@@ -1,124 +1,45 @@
-/* General Styling */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #f4f4f4;
-}
-
-/* Layout Container */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    width: 90%;
-    max-width: 1200px;
-    gap: 20px;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-/* Stats (Word & Character Counter - Right Side) */
-.stats-container {
-    flex: 1;
-    max-width: 300px;
-    background: white;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Main Content Section */
-.content-section {
-    flex: 2;
-    text-align: center;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Logo & Title */
-.logo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.logo-container img {
-    width: 80px;
-}
-
-h1 {
-    font-size: 24px;
-    margin-top: 10px;
-}
-
-/* Text Input Box */
-textarea {
-    width: 100%;
-    height: 150px;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-}
-
-/* CASE Buttons */
-.case-buttons {
-    margin-top: 10px;
-}
-
-.case-buttons button {
+/* Dropdown Button Styling */
+#caseButton {
+    font-size: 16px;
     padding: 10px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    border: none;
-    background-color: #007BFF;
+    background-color: #007bff;
     color: white;
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
-    margin: 5px;
+    margin-bottom: 10px;
 }
 
-.case-buttons button:hover {
+#caseButton:hover {
     background-color: #0056b3;
 }
 
-/* Footer */
-footer {
-    margin-top: 20px;
-    padding: 10px;
-    background: white;
-    width: 100%;
-    text-align: center;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+/* Dropdown Menu */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
-/* Mobile View */
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        align-items: center;
-    }
+.dropdown-content button {
+    background-color: white;
+    color: black;
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ddd;
+    text-align: left;
+    cursor: pointer;
+}
 
-    .stats-container {
-        width: 100%;
-        max-width: 100%;
-    }
+.dropdown-content button:hover {
+    background-color: #f1f1f1;
+}
 
-    .content-section {
-        width: 100%;
-    }
-
-    .case-buttons button {
-        display: block;
-        width: 100%;
-        margin: 5px 0;
-    }
+.dropdown-content.show {
+    display: block;
 }
