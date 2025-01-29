@@ -25,7 +25,7 @@ body {
 /* Stats (Word & Character Counter - Right Side) */
 .stats-container {
     flex: 1;
-    max-width: 250px;
+    max-width: 300px;
     background: white;
     padding: 20px;
     border-radius: 20px;
