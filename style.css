@@ -1,96 +1,74 @@
-/* Global styling */
+/* General styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
+/* Container for main layout */
 .container {
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    height: 100vh;
-    flex-direction: column;
+    flex-direction: row; /* Align elements side by side */
+    justify-content: space-between;
     padding: 20px;
+    max-width: 1200px;
+    margin: auto;
 }
 
+/* Left Section - Word & Character Frequency */
+.stats-container {
+    flex: 1;
+    max-width: 300px;
+    padding: 20px;
+    background-color: #f0f0f0;
+    border-radius: 80px;
+    text-align: center;
+}
+
+/* Main Content Section */
 .content-section {
-    max-width: 800px;
-    width: 100%;
+    flex: 2;
     text-align: center;
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
 }
 
-/* Center logo */
+/* Logo and heading */
 .logo-container {
-    text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
 }
 
 .logo-container img {
-    width: 120px; /* Resize logo for mobile */
-    height: auto;
+    width: 120px;
+    transition: all 0.3s ease-in-out;
 }
 
 h1 {
     font-size: 28px;
-    margin: 20px 0;
+    margin-top: 10px;
+    transition: all 0.3s ease-in-out;
 }
 
-.counts h3 {
-    margin: 10px 0;
-}
-
-/* Sidebar section styles */
-.sidebar-section {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.sticky-sidebar {
-    width: 250px;
-    background: #fff;
-    border: 1px solid #ddd;
-    padding: 20px;
-    border-radius: 10px;
-    position: relative;
-    margin-left: 20px;
-}
-
-.word-count-box,
-.character-count-box {
-    margin-bottom: 20px;
-}
-
-.scrollable-list {
-    list-style: none;
-    padding: 0;
-    max-height: 300px;
-    overflow-y: auto;
-}
-
-footer {
-    text-align: center;
-    margin-top: 50px;
-}
-
-/* Input field styling */
+/* Adjustments for content box */
 textarea {
     width: 100%;
     height: 200px;
-    font-size: 16px;
     padding: 10px;
     margin-bottom: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+}
+
+/* Prevent logo and H1 from moving up */
+.fixed-header {
+    position: sticky;
+    top: 10px;
+    background: white;
+    z-index: 1000;
+    padding: 10px;
+    width: 100%;
 }
 
 /* Buttons & dropdown styling */
@@ -129,24 +107,24 @@ button {
     background-color: #ddd;
 }
 
-/* Media Queries for responsiveness */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         align-items: center;
     }
 
-    .content-section {
-        margin-bottom: 10px;
+    .stats-container {
+        max-width: 100%;
+        margin-bottom: 20px;
     }
 
     .sticky-sidebar {
         width: 100%;
-        margin-left: 0;
     }
 
     .logo-container img {
-        width: 100px; /* Adjust logo size on mobile */
+        width: 100px;
     }
 
     h1 {
@@ -164,18 +142,18 @@ button {
     }
 
     .logo-container img {
-        width: 80px; /* Further reduce logo size on very small screens */
+        width: 80px;
     }
 
     h1 {
         font-size: 20px;
     }
 
-    .sticky-sidebar {
+    .stats-container {
         padding: 10px;
     }
 
     .dropdown-content button {
-        font-size: 14px; /* Reduce font size for buttons on smaller screens */
+        font-size: 14px;
     }
 }
