@@ -3,52 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Text Analysis & Case Converter</title>
+    <title>Character & Word Frequency Counter by Pankaj Kamboj</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="https://i.imgur.com/3cLpipH.png" type="image/png">
+    <link rel="icon" type="image/png" href="https://i.imgur.com/3cLpipH.png">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Header Section with Logo -->
+    <header class="header">
+        <img src="https://i.imgur.com/3cLpipH.png" alt="Logo" class="logo">
+    </header>
 
     <div class="container">
-
         <!-- Main Content Section -->
         <div class="content-section">
-            <div class="logo-container">
-                <img src="https://i.imgur.com/3cLpipH.png" alt="Logo">
-                <h1>Text Analyzer</h1>
+            <h1>Character & Word Frequency Counter</h1>
+
+            <!-- Case Dropdown Button -->
+            <div class="case-selector">
+                <button id="caseButton" onclick="toggleCaseDropdown()">Case</button>
+                <div id="caseDropdown" class="dropdown-content">
+                    <button onclick="changeCase('sentence')">Sentence case</button>
+                    <button onclick="changeCase('title')">Title Case</button>
+                    <button onclick="changeCase('uppercase')">UPPERCASE</button>
+                    <button onclick="changeCase('lowercase')">lowercase</button>
+                </div>
             </div>
 
-            <!-- Text Input Box -->
-            <textarea id="textInput" placeholder="Type or paste your content here..." oninput="updateCounts()"></textarea>
+            <!-- Input Textarea -->
+            <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
 
-            <!-- CASE Conversion Buttons -->
-            <div class="case-buttons">
-                <button onclick="convertToSentenceCase()">Sentence case</button>
-                <button onclick="convertToTitleCase()">Title Case</button>
-                <button onclick="convertToUpperCase()">UPPERCASE</button>
-                <button onclick="convertToLowerCase()">lowercase</button>
-                <button onclick="clearText()">Clear</button>
+            <!-- Word and Character Counts -->
+            <div class="counts">
+                <h3>Total Words: <span id="wordCount">0</span></h3>
+                <h3>Total Characters: <span id="charCount">0</span></h3>
             </div>
         </div>
 
-        <!-- Word & Character Frequency Analysis Section -->
-        <div class="stats-container">
-            <h3 id="wordCount">Total Words: 0</h3>
-            <div id="wordFrequency"></div>
-
-            <h3 id="charCount">Total Characters: 0</h3>
-            <div id="charFrequency"></div>
+        <!-- Sidebar Section -->
+        <div class="sidebar-section">
+            <div class="sticky-sidebar">
+                <div class="word-count-box">
+                    <h3>Word Frequency:</h3>
+                    <ul id="wordFrequencyList" class="scrollable-list"></ul>
+                </div>
+                <div class="character-count-box">
+                    <h3>Character Frequency:</h3>
+                    <ul id="charFrequencyList" class="scrollable-list"></ul>
+                </div>
+            </div>
         </div>
-
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>By Pankaj Kamboj</p>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>This Tool is made by <b>Pankaj Kamboj</b>.</p>
     </footer>
 
     <script src="script.js"></script>
