@@ -1,7 +1,7 @@
 function updateCounts() {
     let text = document.getElementById("textInput").value;
     let words = text.trim().split(/\s+/).filter(word => word.length > 0);
-    let characters = text.replace(/\s/g, '').length;
+    let characters = text.length;
 
     document.getElementById("wordCount").innerText = words.length + " Words";
     document.getElementById("charCount").innerText = characters + " Characters";
