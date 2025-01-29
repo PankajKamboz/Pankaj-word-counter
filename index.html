@@ -12,16 +12,98 @@
     <!-- Linking to External Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            padding: 20px;
+        }
+
+        .content-section {
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Center logo */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            width: 100px;
+            height: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+        }
+
+        .counts h3 {
+            margin: 10px 0;
+        }
+
+        .sidebar-section {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .sticky-sidebar {
+            position: fixed;
+            top: 100px;
+            right: 30px;
+            width: 250px;
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .word-count-box,
+        .character-count-box {
+            margin-bottom: 20px;
+        }
+
+        .scrollable-list {
+            list-style: none;
+            padding: 0;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
         <div class="content-section">
-            <!-- Header with logo -->
-            <h1>
-                <img src="https://i.imgur.com/3cLpipH.png" alt="Logo" style="width: 100px; height: auto;">
-                Character & Word Frequency Counter
-            </h1>
+            <!-- Logo outside h1 -->
+            <div class="logo-container">
+                <img src="https://i.imgur.com/3cLpipH.png" alt="Logo">
+            </div>
+
+            <!-- Header Title -->
+            <h1>Character & Word Frequency Counter</h1>
 
             <!-- Rest of your content here -->
             <div class="case-selector">
