@@ -3,11 +3,23 @@ function updateCounts() {
     let words = text.trim().split(/\s+/).filter(word => word.length > 0);
     let characters = text.replace(/\s/g, '').length;
 
-    document.getElementById("wordCount").innerText = words.length;
-    document.getElementById("charCount").innerText = characters;
+    document.getElementById("wordCount").innerText = words.length + " Words";
+    document.getElementById("charCount").innerText = characters + " Characters";
 }
 
 function clearText() {
     document.getElementById("textInput").value = "";
+    updateCounts();
+}
+
+function convertToUpperCase() {
+    let textArea = document.getElementById("textInput");
+    textArea.value = textArea.value.toUpperCase();
+    updateCounts();
+}
+
+function convertToLowerCase() {
+    let textArea = document.getElementById("textInput");
+    textArea.value = textArea.value.toLowerCase();
     updateCounts();
 }
