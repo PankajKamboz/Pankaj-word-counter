@@ -7,244 +7,37 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/3cLpipH.png" type="image/png">
-    
-    <!-- Linking to External Stylesheet -->
+
+    <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* Global styling */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            height: 100vh;
-            flex-direction: column;
-            padding: 20px;
-        }
-
-        .content-section {
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-        /* Center logo */
-        .logo-container {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            width: 120px; /* Resize logo for mobile */
-            height: auto;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin: 20px 0;
-        }
-
-        .counts h3 {
-            margin: 10px 0;
-        }
-
-        /* Sidebar section styles */
-        .sidebar-section {
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            width: 100%;
-        }
-
-        .sticky-sidebar {
-            width: 250px;
-            background: #fff;
-            border: 1px solid #ddd;
-            padding: 20px;
-            border-radius: 10px;
-            position: relative;
-            margin-left: 20px;
-        }
-
-        .word-count-box,
-        .character-count-box {
-            margin-bottom: 20px;
-        }
-
-        .scrollable-list {
-            list-style: none;
-            padding: 0;
-            max-height: 300px;
-            overflow-y: auto;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        /* Input field styling */
-        textarea {
-            width: 100%;
-            height: 200px;
-            font-size: 16px;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            box-sizing: border-box;
-        }
-
-        /* Buttons & dropdown styling */
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            background-color: #007BFF;
-            color: white;
-            border-radius: 5px;
-            margin: 5px;
-        }
-
-        /* Dropdown styling */
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-
-        .dropdown-content button {
-            background-color: #f1f1f1;
-            border: none;
-            padding: 10px;
-            width: 100%;
-            text-align: left;
-        }
-
-        .dropdown-content button:hover {
-            background-color: #ddd;
-        }
-
-        /* Media Queries for responsiveness */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .content-section {
-                margin-bottom: 10px;
-            }
-
-            .sticky-sidebar {
-                width: 100%;
-                margin-left: 0;
-            }
-
-            .logo-container img {
-                width: 100px; /* Adjust logo size on mobile */
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-
-            textarea {
-                height: 150px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-
-            .logo-container img {
-                width: 80px; /* Further reduce logo size on very small screens */
-            }
-
-            h1 {
-                font-size: 20px;
-            }
-
-            .sticky-sidebar {
-                padding: 10px;
-            }
-
-            .dropdown-content button {
-                font-size: 14px; /* Reduce font size for buttons on smaller screens */
-            }
-        }
-    </style>
-
 </head>
 <body>
+
     <div class="container">
+
+        <!-- Word & Character Frequency Section -->
+        <div class="stats-container">
+            <h3>Word Frequency:</h3>
+            <p id="wordCount">0</p>
+            <h3>Character Frequency:</h3>
+            <p id="charCount">0</p>
+        </div>
+
+        <!-- Main Content Section -->
         <div class="content-section">
-            <!-- Logo outside h1 -->
             <div class="logo-container">
                 <img src="https://i.imgur.com/3cLpipH.png" alt="Logo">
+                <h1>Character & Word Frequency Counter</h1>
             </div>
 
-            <!-- Header Title -->
-            <h1>Character & Word Frequency Counter</h1>
+            <!-- Text Input Box -->
+            <textarea id="textInput" placeholder="Type or paste your content here..." oninput="updateCounts()"></textarea>
 
-            <!-- Rest of your content here -->
-            <div class="case-selector">
-                <button id="caseButton" onclick="toggleCaseDropdown()">Case</button>
-                <div id="caseDropdown" class="dropdown-content">
-                    <button onclick="changeCase('sentence')">Sentence case</button>
-                    <button onclick="changeCase('title')">Title Case</button>
-                    <button onclick="changeCase('uppercase')">UPPERCASE</button>
-                    <button onclick="changeCase('lowercase')">lowercase</button>
-                </div>
-            </div>
-
-            <!-- Input Textarea -->
-            <textarea id="inputText" placeholder="Start typing your text here..."></textarea>
-
-            <!-- Word and Character Counts -->
-            <div class="counts">
-                <h3>Total Words: <span id="wordCount">0</span></h3>
-                <h3>Total Characters: <span id="charCount">0</span></h3>
-            </div>
+            <!-- Clear Button -->
+            <button onclick="clearText()">Clear</button>
         </div>
 
-        <div class="sidebar-section">
-            <div class="sticky-sidebar">
-                <div class="word-count-box">
-                    <h3>Word Frequency:</h3>
-                    <ul id="wordFrequencyList" class="scrollable-list"></ul>
-                </div>
-                <div class="character-count-box">
-                    <h3>Character Frequency:</h3>
-                    <ul id="charFrequencyList" class="scrollable-list"></ul>
-                </div>
-            </div>
-        </div>
     </div>
-
-    <footer class="footer">
-        <p>This Tool is made by <b>Pankaj Kamboj</b>.</p>
-    </footer>
 
     <script src="script.js"></script>
 </body>
