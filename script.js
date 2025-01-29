@@ -23,8 +23,9 @@ function changeCase(caseType) {
             inputText.value = text.toLowerCase();
             break;
     }
+    // Close dropdown after selection
     document.getElementById("caseDropdown").classList.remove("show");
-    updateWordCountAndFreq();
+    updateWordCountAndFreq(); // Update frequency counts after case change
 }
 
 // Convert text to Sentence case
@@ -34,7 +35,7 @@ function toSentenceCase(str) {
     });
 }
 
-// Convert text to Title Case
+// Convert text to Title case
 function toTitleCase(str) {
     return str.replace(/\b([a-z]+)/g, function(match) {
         return match.charAt(0).toUpperCase() + match.slice(1);
@@ -43,49 +44,14 @@ function toTitleCase(str) {
 
 // Function to update word and character count and frequency lists
 function updateWordCountAndFreq() {
-    var text = document.getElementById("inputText").value.trim();
-    
-    var words = text.length > 0 ? text.split(/\s+/) : [];
-    var wordCount = words.length;
+    var text = document.getElementById("inputText").value;
+
+    var wordCount = text.trim().split(/\s+/).length;
+    if (text.trim() === "") wordCount = 0; // Handle empty text
     var charCount = text.length;
-    
-    // Update counts in UI
+
     document.getElementById("wordCount").textContent = wordCount;
     document.getElementById("charCount").textContent = charCount;
-
-    updateWordFrequency(words, wordCount);
-    updateCharacterFrequency(text, charCount);
-}
-
-// Update word frequency with percentage
-function updateWordFrequency(words, totalWords) {
-    var wordFrequency = {};
-    words.forEach(word => {
-        word = word.toLowerCase();
-        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
-    });
-
-    var wordList = '';
-    for (var word in wordFrequency) {
-        let percentage = ((wordFrequency[word] / totalWords) * 100).toFixed(2);
-        wordList += `<li>${word}: ${wordFrequency[word]} (${percentage}%)</li>`;
-    }
-    document.getElementById("wordFrequencyList").innerHTML = wordList;
-}
-
-// Update character frequency with percentage
-function updateCharacterFrequency(text, totalChars) {
-    var charFrequency = {};
-    for (var char of text) {
-        charFrequency[char] = (charFrequency[char] || 0) + 1;
-    }
-
-    var charList = '';
-    for (var char in charFrequency) {
-        let percentage = ((charFrequency[char] / totalChars) * 100).toFixed(2);
-        charList += `<li>${char}: ${charFrequency[char]} (${percentage}%)</li>`;
-    }
-    document.getElementById("charFrequencyList").innerHTML = charList;
 }
 
 // Event listener for textarea input
