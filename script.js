@@ -1,74 +1,92 @@
-function updateCounts() {
-    let text = document.getElementById("textInput").value.trim();
-    let words = text.split(/\s+/).filter(word => word.length > 0);
-    let characters = text.length;
-
-    document.getElementById("wordCount").innerText = `Total Words: ${words.length}`;
-    document.getElementById("charCount").innerText = `Total Characters: ${characters}`;
-
-    updateWordFrequency(words);
-    updateCharacterFrequency(text);
+// Toggle visibility of the dropdown menu
+function toggleCaseDropdown() {
+    var dropdown = document.getElementById("caseDropdown");
+    dropdown.classList.toggle("show");
 }
 
-function updateWordFrequency(words) {
-    let wordCounts = {};
-    words.forEach(word => {
-        wordCounts[word] = (wordCounts[word] || 0) + 1;
-    });
+// Change the case of the text in the textarea
+function changeCase(caseType) {
+    var inputText = document.getElementById("inputText");
+    var text = inputText.value;
 
-    let totalWords = words.length;
-    let wordFrequencyDiv = document.getElementById("wordFrequency");
-    wordFrequencyDiv.innerHTML = `<h4>Word Frequency:</h4>`;
+    switch (caseType) {
+        case 'sentence':
+            inputText.value = toSentenceCase(text);
+            break;
+        case 'title':
+            inputText.value = toTitleCase(text);
+            break;
+        case 'uppercase':
+            inputText.value = text.toUpperCase();
+            break;
+        case 'lowercase':
+            inputText.value = text.toLowerCase();
+            break;
+    }
+    document.getElementById("caseDropdown").classList.remove("show");
+    updateWordCountAndFreq();
+}
+
+// Convert text to Sentence case
+function toSentenceCase(str) {
+    return str.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, function(match) {
+        return match.toUpperCase();
+    });
+}
+
+// Convert text to Title Case
+function toTitleCase(str) {
+    return str.replace(/\b([a-z]+)/g, function(match) {
+        return match.charAt(0).toUpperCase() + match.slice(1);
+    });
+}
+
+// Function to update word and character count and frequency lists
+function updateWordCountAndFreq() {
+    var text = document.getElementById("inputText").value.trim();
     
-    for (let word in wordCounts) {
-        let percentage = ((wordCounts[word] / totalWords) * 100).toFixed(2);
-        wordFrequencyDiv.innerHTML += `<p>${word}: ${wordCounts[word]} (${percentage}%)</p>`;
-    }
+    var words = text.length > 0 ? text.split(/\s+/) : [];
+    var wordCount = words.length;
+    var charCount = text.length;
+    
+    // Update counts in UI
+    document.getElementById("wordCount").textContent = wordCount;
+    document.getElementById("charCount").textContent = charCount;
+
+    updateWordFrequency(words, wordCount);
+    updateCharacterFrequency(text, charCount);
 }
 
-function updateCharacterFrequency(text) {
-    let charCounts = {};
-    text.split("").forEach(char => {
-        if (char.trim() !== "") {
-            charCounts[char] = (charCounts[char] || 0) + 1;
-        }
+// Update word frequency with percentage
+function updateWordFrequency(words, totalWords) {
+    var wordFrequency = {};
+    words.forEach(word => {
+        word = word.toLowerCase();
+        wordFrequency[word] = (wordFrequency[word] || 0) + 1;
     });
 
-    let totalChars = text.length;
-    let charFrequencyDiv = document.getElementById("charFrequency");
-    charFrequencyDiv.innerHTML = `<h4>Character Frequency:</h4>`;
-
-    for (let char in charCounts) {
-        let percentage = ((charCounts[char] / totalChars) * 100).toFixed(2);
-        charFrequencyDiv.innerHTML += `<p>${char}: ${charCounts[char]} (${percentage}%)</p>`;
+    var wordList = '';
+    for (var word in wordFrequency) {
+        let percentage = ((wordFrequency[word] / totalWords) * 100).toFixed(2);
+        wordList += `<li>${word}: ${wordFrequency[word]} (${percentage}%)</li>`;
     }
+    document.getElementById("wordFrequencyList").innerHTML = wordList;
 }
 
-function clearText() {
-    document.getElementById("textInput").value = "";
-    updateCounts();
+// Update character frequency with percentage
+function updateCharacterFrequency(text, totalChars) {
+    var charFrequency = {};
+    for (var char of text) {
+        charFrequency[char] = (charFrequency[char] || 0) + 1;
+    }
+
+    var charList = '';
+    for (var char in charFrequency) {
+        let percentage = ((charFrequency[char] / totalChars) * 100).toFixed(2);
+        charList += `<li>${char}: ${charFrequency[char]} (${percentage}%)</li>`;
+    }
+    document.getElementById("charFrequencyList").innerHTML = charList;
 }
 
-function convertToUpperCase() {
-    let textArea = document.getElementById("textInput");
-    textArea.value = textArea.value.toUpperCase();
-    updateCounts();
-}
-
-function convertToLowerCase() {
-    let textArea = document.getElementById("textInput");
-    textArea.value = textArea.value.toLowerCase();
-    updateCounts();
-}
-
-function convertToSentenceCase() {
-    let textArea = document.getElementById("textInput");
-    textArea.value = textArea.value.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
-    updateCounts();
-}
-
-function convertToTitleCase() {
-    let textArea = document.getElementById("textInput");
-    textArea.value = textArea.value.replace(/\b\w/g, c => c.toUpperCase());
-    updateCounts();
-}
+// Event listener for textarea input
+document.getElementById("inputText").addEventListener("input", updateWordCountAndFreq);
