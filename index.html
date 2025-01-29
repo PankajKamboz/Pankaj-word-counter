@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +7,12 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://i.imgur.com/3cLpipH.png" type="image/png">
-
+    
     <!-- Linking to External Stylesheet -->
     <link rel="stylesheet" href="style.css">
 
     <style>
+        /* Global styling */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
@@ -25,6 +25,7 @@
             justify-content: center;
             align-items: flex-start;
             height: 100vh;
+            flex-direction: column;
             padding: 20px;
         }
 
@@ -36,6 +37,7 @@
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
         /* Center logo */
@@ -45,7 +47,7 @@
         }
 
         .logo-container img {
-            width: 100px;
+            width: 120px; /* Resize logo for mobile */
             height: auto;
         }
 
@@ -58,21 +60,22 @@
             margin: 10px 0;
         }
 
+        /* Sidebar section styles */
         .sidebar-section {
             display: flex;
             justify-content: center;
             align-items: flex-start;
+            width: 100%;
         }
 
         .sticky-sidebar {
-            position: fixed;
-            top: 100px;
-            right: 30px;
             width: 250px;
             background: #fff;
             border: 1px solid #ddd;
             padding: 20px;
             border-radius: 10px;
+            position: relative;
+            margin-left: 20px;
         }
 
         .word-count-box,
@@ -91,9 +94,108 @@
             text-align: center;
             margin-top: 50px;
         }
-    </style>
-</head>
 
+        /* Input field styling */
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-size: 16px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Buttons & dropdown styling */
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        /* Dropdown styling */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dropdown-content button {
+            background-color: #f1f1f1;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown-content button:hover {
+            background-color: #ddd;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .content-section {
+                margin-bottom: 10px;
+            }
+
+            .sticky-sidebar {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .logo-container img {
+                width: 100px; /* Adjust logo size on mobile */
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            textarea {
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px;
+            }
+
+            .logo-container img {
+                width: 80px; /* Further reduce logo size on very small screens */
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+
+            .sticky-sidebar {
+                padding: 10px;
+            }
+
+            .dropdown-content button {
+                font-size: 14px; /* Reduce font size for buttons on smaller screens */
+            }
+        }
+    </style>
+
+</head>
 <body>
     <div class="container">
         <div class="content-section">
@@ -146,5 +248,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
