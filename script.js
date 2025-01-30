@@ -104,5 +104,46 @@ function updateFrequencyList(frequency, listId) {
     }
 }
 
+// Update the word count, character count, and other statistics
+function updateWordCountAndFreq() {
+    var text = document.getElementById("inputText").value;
+
+    // Word and Character Count
+    var wordCount = text.trim().split(/\s+/).length;
+    if (text.trim() === "") wordCount = 0; // Handle empty text
+    var charCount = text.length;
+
+    // Sentence Count (simple estimate by splitting on punctuation)
+    var sentenceCount = text.split(/[.!?]+/).length - 1;
+
+    // Paragraph Count (split by new lines or double spaces)
+    var paragraphCount = text.split(/\n|\r|\r\n/).length;
+
+    // Reading Time (approx. 200-250 words per minute)
+    var readingTime = Math.round(wordCount / 200);
+
+    // Speaking Time (approx. 150 words per minute)
+    var speakingTime = Math.round(wordCount / 150);
+
+    // Update the UI
+    document.getElementById("wordCount").textContent = wordCount;
+    document.getElementById("charCount").textContent = charCount;
+
+    // Update the detailed statistics section
+    document.getElementById("sentenceCount").textContent = sentenceCount;
+    document.getElementById("paragraphCount").textContent = paragraphCount;
+    document.getElementById("readingTime").textContent = readingTime + " sec";
+    document.getElementById("speakingTime").textContent = speakingTime + " sec";
+
+    // Update Word Frequency
+    var wordFrequency = getWordFrequency(text);
+    updateFrequencyList(wordFrequency, "wordFrequencyList");
+
+    // Update Character Frequency
+    var charFrequency = getCharacterFrequency(text);
+    updateFrequencyList(charFrequency, "charFrequencyList");
+}
+
+
 // Event listener for textarea input
 document.getElementById("inputText").addEventListener("input", updateWordCountAndFreq);
